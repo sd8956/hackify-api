@@ -71,10 +71,6 @@ exports.update = async (req, res) => {
     const id = req.user._id
     const newData = req.body
 
-    if ((!newData.name, !newData.email)) {
-      return errorResponse(res, errors.MISSING_REQUIRED_FIELDS)
-    }
-
     const updatedUser = await userService.update(id, newData)
 
     return okResponse(res, 200, { updatedUser })
