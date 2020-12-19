@@ -77,6 +77,25 @@ exports.getOne = async (req, res) => {
   }
 };
 
+// Get by user id
+exports.getByUSerId = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    if (!id) {
+      return errorResponse(res, errors.MISSING_REQUIRED_FIELDS)
+    }
+
+    const user = await userService.getOne(id)
+    const extraInfo = await this.getExtraIfno(user)
+
+    return okResponse(res, 200, { user, extraInfo })
+  } catch (err) {
+    console.log('exports.getByUSerId -> err', err)
+    return errorResponse(res, errors.INTERNAL_ERROR, err)
+  }
+};
+
 // Create user
 exports.create = async (req, res) => {
   const userData = req.body
