@@ -8,7 +8,7 @@
 2. Install dependencies: `npm i`
 3. Fill environment variables (`.env`file).
   If you don't have an `.env` file you can use: `mv .env.example .env`
-4. Start the server: `npm start`
+4. Start the server: `npm run start` / `npm run dev`
 
 ## 🖥 Technologies
 * node
