@@ -12,6 +12,9 @@ function AplicationApi(app) {
   // Get aplication by auth user
   aplicationRoutes.get('/user/:id', authenticate, aplicationController.getByUserId)
 
+  // Get palced aplications
+  aplicationRoutes.get('/placed',  authenticate, aplicationController.getPlacedAplications)
+
   // Get aplication by id
   aplicationRoutes.get('/:id', authenticate, aplicationController.getOne)
 

@@ -18,3 +18,10 @@ exports.getByUserId = async(userId) => Aplication.find({ userId: userId })
 
 // Get APliccation by id
 exports.getOne = async(id) => Aplication.findById(id)
+
+
+exports.getPlacedAplications = async() => await Aplication.find({ status: "Placed" })
+                                                          .populate({
+                                                            path: 'userId',
+                                                            select: 'name email social photoUrl'
+                                                          })
