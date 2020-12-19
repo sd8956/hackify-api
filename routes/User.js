@@ -9,6 +9,9 @@ function usersApi(app) {
   // Get one user
   userRoutes.get('/', authenticate, userController.getOne)
 
+  // Get one by usr id
+  userRoutes.get('/:id', authenticate, userController.getByUSerId)
+
   // Update user
   userRoutes.put('/', authenticate, userController.update)
 
