@@ -20,12 +20,12 @@ exports.getByUserId = async (userId) => Student.findOne({ userId: userId })
                                           })
 
 // Get students by cohort and coach_id
-exports.getFilterStudents = async (coach_id, cohort) => {
+exports.getFilterStudents = async (coachId, cohort) => {
     let query = {}
 
-    if (coach_id) {
+    if (coachId) {
         query = {
-            tpCoaches: { "$in": [coach_id] }
+            tpCoaches: { "$in": [coachId] }
         }
     }
 
@@ -38,8 +38,12 @@ exports.getFilterStudents = async (coach_id, cohort) => {
 
     return await Student.find(query)
                     .populate({
-                      path: 'user_id',
+                      path: 'userId',
                       select: 'name email social photoUrl'
+                    })
+                    .populate({
+                      path: 'cohort',
+                      select: 'number start_talent_placement'
                     })
 }
 
