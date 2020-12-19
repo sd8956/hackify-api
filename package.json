@@ -1,6 +1,6 @@
 {
   "name": "hackify_api",
-  "version": "0.2",
+  "version": "1.0.0",
   "description": "Proyecto para el hackathon master",
   "main": "index.js",
   "scripts": {
