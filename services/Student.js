@@ -4,12 +4,20 @@ var mongoose = require('mongoose')
 
 // Get one Student by id
 exports.getOne = async (id) => await Student.findById(id).populate({
-                                  path: 'user_id',
+                                  path: 'userId',
                                   select: 'name email social photoUrl'
+                                })                                
+                                .populate({
+                                  path: 'cohort',
+                                  select: 'number start_talent_placement'
                                 })
 
 // Get Student by user_id
 exports.getByUserId = async (userId) => Student.findOne({ userId: userId })
+                                          .populate({
+                                            path: 'cohort',
+                                            select: 'number start_talent_placement'
+                                          })
 
 // Get students by cohort and coach_id
 exports.getFilterStudents = async (coach_id, cohort) => {

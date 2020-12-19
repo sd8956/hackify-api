@@ -1,10 +1,10 @@
 const bcrypt = require('bcryptjs')
-const {generateToken} = require('../lib/jwt');
-const userService = require('../services/User');
+const {generateToken} = require('../lib/jwt')
+const userService = require('../services/User')
 const studentService = require('../services/Student')
 const coachService = require('../services/Coach')
-const { errors } = require('../utils/constants');
-const { okResponse, errorResponse } = require('../utils/utils');
+const { errors } = require('../utils/constants')
+const { okResponse, errorResponse } = require('../utils/utils')
 
 
 exports.login = async (req, res) => {

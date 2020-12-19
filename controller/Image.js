@@ -1,8 +1,8 @@
-const { upload } = require('../services/Image');
-const { okResponse, errorResponse } = require('../utils/utils');
-const { errors } = require('../utils/constants');
+const { upload } = require('../services/Image')
+const { okResponse, errorResponse } = require('../utils/utils')
+const { errors } = require('../utils/constants')
 
-const singleUpload = upload.single('image');
+const singleUpload = upload.single('image')
 
 // Upload one image to s3
 exports.upload = async (req, res) => {

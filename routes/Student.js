@@ -7,7 +7,7 @@ function studentsApi(app) {
   app.use('/students', userRoutes)
 
   // Get one student
-  userRoutes.get('/', authenticate, studentController.getOne)
+  userRoutes.get('/:id', authenticate, studentController.getOne)
 
   // Create one student
   userRoutes.post('/', authenticate, studentController.create)
