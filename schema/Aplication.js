@@ -6,8 +6,9 @@ const AplicationsSchema = new Schema(
   {
     status: {
       type: String,
-      enum: [ 'In Progress', 'Rejected', 'Got Offer', 'RejectedByStudent', 'Placed'],
-      required: false
+      enum: ['In Progress', 'Rejected', 'Got Offer', 'RejectedByStudent', 'Placed'],
+      required: false,
+      default: 'In Progress'
     },
     companyName: {
       type: String,
