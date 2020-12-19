@@ -7,6 +7,10 @@ exports.getOne = async (id) => User.findById(id)
 // Get user by email
 exports.getByEmail = async (email) => User.findOne({ email: email })
 
+
+// Get all user with rol coach: name and _id
+exports.getAllUserCoach = async () => User.find({ role: 'coach' }, 'name')
+
 // Create one User
 exports.create = async (userData) => {
   const password = await bcrypt.hash(userData.password, 7)

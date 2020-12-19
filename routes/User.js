@@ -1,7 +1,6 @@
-  
 const express = require('express')
 const userController = require('../controller/User')
-const { authenticate, student, coach } = require('../middleware/auth')
+const { authenticate } = require('../middleware/auth')
 
 function usersApi(app) {
   const userRoutes = express.Router()
@@ -11,7 +10,9 @@ function usersApi(app) {
   userRoutes.get('/', authenticate, userController.getOne)
 
   // Update user
-  userRoutes.put('/update', authenticate, userController.update)
+  userRoutes.put('/', authenticate, userController.update)
+
+  userRoutes.get('/coaches', authenticate, userController.getAllCoach)
 }
 
 module.exports = usersApi;
