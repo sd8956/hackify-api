@@ -3,14 +3,14 @@ const coachController = require('../controller/Coach')
 const { authenticate } = require('../middleware/auth')
 
 function coachApi(app) {
-  const userRoutes = express.Router()
-  app.use('/coaches', userRoutes)
+  const coachRoutes = express.Router()
+  app.use('/coaches', coachRoutes)
 
   // Get one coach
-  userRoutes.get('/:id', authenticate, coachController.getOne)
+  coachRoutes.get('/:id', authenticate, coachController.getOne)
 
   // Create coach
-  userRoutes.post('/', authenticate, coachController.create)
+  coachRoutes.post('/', authenticate, coachController.create)
 
 }
 
