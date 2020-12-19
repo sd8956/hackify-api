@@ -18,8 +18,9 @@ const StudentSchema = new Schema(
         enum: ['Frontend', 'Backent', 'Datascience']
     }],
     cohort: {
-        type: Number,
-        required: true
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'Cohort'
     },
     platziUser: String,
     tpCoaches: [{

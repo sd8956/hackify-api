@@ -1,10 +1,13 @@
 const Coach = require('../schema/Coach')
-var ObjectId = require('mongoose').Types.ObjectId; 
 
 // Get one Coach by id
 exports.getOne = async (id) => Coach.findById(id).populate({
-                                  path: 'user_id',
+                                  path: 'userId',
                                   select: 'name email social photoUrl'
+                                })
+                                .populate({
+                                  path: 'cohort',
+                                  select: 'number start_talent_placement'
                                 })
 
 // Get Coach by user_id

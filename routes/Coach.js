@@ -7,7 +7,7 @@ function coachApi(app) {
   app.use('/coaches', userRoutes)
 
   // Get one coach
-  userRoutes.get('/', authenticate, coachController.getOne)
+  userRoutes.get('/:id', authenticate, coachController.getOne)
 
   // Create coach
   userRoutes.post('/', authenticate, coachController.create)

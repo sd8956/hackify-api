@@ -1,6 +1,6 @@
 const studentService = require('../services/Student')
-const { errors } = require('../utils/constants');
-const { okResponse, errorResponse } = require('../utils/utils');
+const { errors } = require('../utils/constants')
+const { okResponse, errorResponse } = require('../utils/utils')
 
 exports.getOne = async(req, res) => {
   try {
@@ -33,7 +33,7 @@ exports.create = async(req, res) => {
       res,
       201,
       { coach: newCoach },
-      'Usuario creado correctamente',
+      'Estudiante creado correctamente',
     );
   } catch (err) {
     console.log('exports.create -> err', err)

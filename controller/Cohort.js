@@ -1,4 +1,4 @@
-const coachService = require('../services/Coach')
+const cohortService = require('../services/Cohort')
 const { errors } = require('../utils/constants')
 const { okResponse, errorResponse } = require('../utils/utils')
 
@@ -10,30 +10,41 @@ exports.getOne = async(req, res) => {
       return errorResponse(res, errors.MISSING_REQUIRED_FIELDS)
     }
 
-    const coach = await coachService.getOne(id)
+    const cohort = await cohortService.getOne(id)
 
-    return okResponse(res, 200, { coach })
+    return okResponse(res, 200, { cohort })
   } catch (err) {
     console.log('exports.getOne -> err', err)
     return errorResponse(res, errors.INTERNAL_ERROR, err)
   }
 }
 
+exports.getAll = async(req, res) => {
+  try {
+    const cohort = await cohortService.getAll()
+
+    return okResponse(res, 200, { cohort })
+  } catch (err) {
+    console.log('exports.getAll -> err', err)
+    return errorResponse(res, errors.INTERNAL_ERROR, err)
+  }
+}
+
 exports.create = async(req, res) => {
-  const coachData = req.body
+  const cohortData = req.body
 
   try {
-    if ((!coachData.userId)) {
+    if ((!cohortData.number)) {
       return errorResponse(res, errors.MISSING_REQUIRED_FIELDS)
     }
 
-    const newCoach = await coachService.create(coachData)
+    const newCohort = await cohortService.create(cohortData)
 
     return okResponse(
       res,
       201,
-      { coach: newCoach },
-      'Coach creado correctamente',
+      { coach: newCohort },
+      'Cohort creado correctamente',
     );
   } catch (err) {
     console.log('exports.create -> err', err)

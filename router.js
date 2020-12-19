@@ -3,6 +3,7 @@ const authRoutes = require('./routes/Auth')
 const userRoutes = require('./routes/User')
 const coachRoutes = require('./routes/Coach')
 const imageRoutes = require('./routes/Image')
+const cohortRoutes = require('./routes/Cohort')
 const studentRoutes = require('./routes/Student')
 
 module.exports = (app) => {
@@ -30,4 +31,7 @@ module.exports = (app) => {
 
   // Image Routes
   imageRoutes(app);
+
+  // ohort Routes
+  cohortRoutes(app)
 }
