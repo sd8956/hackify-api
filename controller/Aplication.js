@@ -20,9 +20,21 @@ exports.getOne = async(req, res) => {
   }
 }
 
-exports.getByUserId = async(req, res) => {
+exports.getByAuthUser = async(req, res) => {
   try {
     const userId = req.user._id
+    const aplications = await aplicationService.getByUserId(userId)
+
+    return okResponse(res, 200, { aplications })
+  } catch (err) {
+    console.log('exports.getByUserId -> err', err)
+    return errorResponse(res, errors.INTERNAL_ERROR, err)    
+  }
+}
+
+exports.getByUserId = async(req, res) => {
+  try {
+    const userId = req.params.id
     const aplications = await aplicationService.getByUserId(userId)
 
     return okResponse(res, 200, { aplications })
