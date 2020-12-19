@@ -20,7 +20,16 @@ exports.login = async (req, res) => {
       const token = await generateToken({
         id: user._id,
       })
-      return okResponse(res, 200, { token })
+
+      let extraInfo = {}
+
+      if (user.role == "student") {
+        extraInfo = await studentService.getByUserId(user._id)
+      } else {
+        extraInfo = await coachService.getByUserId(user._id)
+      }
+
+      return okResponse(res, 200, { token, user, extraInfo })
     } else {
       return errorResponse(res, errors.AUTHENTICATION_FAILED)
     }
@@ -81,10 +90,17 @@ exports.create = async (req, res) => {
 
     const newUSer = await userService.create(userData)
 
+    const token = await generateToken({
+      id: newUSer._id,
+    })
+
     return okResponse(
       res,
       201,
-      { user: newUSer },
+      { 
+        user: newUSer,
+        token
+      },
       'Usuario creado correctamente',
     );
   } catch (err) {
