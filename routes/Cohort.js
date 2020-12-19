@@ -7,7 +7,7 @@ function cohortsApi(app) {
   app.use('/cohort', cohortRoutes)
 
   // Get all cohorts
-  cohortRoutes.get('/', authenticate, cohortController.getAll)
+  cohortRoutes.get('/', cohortController.getAll)
 
   // Get one cohort
   cohortRoutes.get('/:id', authenticate, cohortController.getOne)
