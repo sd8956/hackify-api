@@ -6,7 +6,16 @@ const coachService = require('../services/Coach')
 const { errors } = require('../utils/constants')
 const { okResponse, errorResponse } = require('../utils/utils')
 
+// Get user extra info 
+exports.getExtraIfno = async(user) => {
+  if (user.role == "student") {
+    return await studentService.getByUserId(user._id)
+  } else {
+    return await coachService.getByUserId(user._id)
+  }
+}
 
+// Login
 exports.login = async (req, res) => {
   const { email, password } = req.body
   try {
@@ -21,13 +30,7 @@ exports.login = async (req, res) => {
         id: user._id,
       })
 
-      let extraInfo = {}
-
-      if (user.role == "student") {
-        extraInfo = await studentService.getByUserId(user._id)
-      } else {
-        extraInfo = await coachService.getByUserId(user._id)
-      }
+      const extraInfo = await this.getExtraIfno(user)
 
       return okResponse(res, 200, { token, user, extraInfo })
     } else {
@@ -39,6 +42,7 @@ exports.login = async (req, res) => {
   }
 };
 
+// Get all user coach
 exports.getAllCoach = async(req, res) => {
   try {
     const coaches = await userService.getAllUserCoach()
@@ -64,13 +68,7 @@ exports.getOne = async (req, res) => {
     }
 
     const user = await userService.getOne(id)
-    let extraInfo = {}
-
-    if (user.role == "student") {
-      extraInfo = await studentService.getByUserId(user._id)
-    } else {
-      extraInfo = await coachService.getByUserId(user._id)
-    }
+    const extraInfo = await this.getExtraIfno(user)
 
     return okResponse(res, 200, { user, extraInfo })
   } catch (err) {
@@ -113,11 +111,12 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const id = req.user._id
-    const newData = req.body
+    const { user, extraInfo } = req.body
 
-    const updatedUser = await userService.update(id, newData)
+    const updatedUser = await userService.update(id, user)
+    const updatedStudent = await studentService.update(id, extraInfo)
 
-    return okResponse(res, 200, { updatedUser })
+    return okResponse(res, 200, { user: updatedUser, extraInfo: updatedStudent })
   } catch (err) {
     console.log('exports.update -> err', err)
     return errorResponse(res, errors.INTERNAL_ERROR, err)

@@ -6,8 +6,11 @@ function AplicationApi(app) {
   const aplicationRoutes = express.Router()
   app.use('/aplications', aplicationRoutes)
 
-  // Get aplication by userId
-  aplicationRoutes.get('/', authenticate, aplicationController.getByUserId)
+  // Get aplication by auth user
+  aplicationRoutes.get('/', authenticate, aplicationController.getByAuthUser)
+
+  // Get aplication by auth user
+  aplicationRoutes.get('/user/:id', authenticate, aplicationController.getByUserId)
 
   // Get aplication by id
   aplicationRoutes.get('/:id', authenticate, aplicationController.getOne)
