@@ -9,7 +9,7 @@ exports.getByEmail = async (email) => User.findOne({ email: email })
 
 
 // Get all user with rol coach: name and _id
-exports.getAllUserCoach = async () => User.find({}, 'name')
+exports.getAllUserCoach = async () => User.find({ role: 'coach' }, 'name')
 
 // Create one User
 exports.create = async (userData) => {

@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const StudentSchema = new Schema(
   {
-    user_id: {
+    userId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'User'

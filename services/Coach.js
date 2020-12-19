@@ -1,10 +1,14 @@
 const Coach = require('../schema/Coach')
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 // Get one Coach by id
-exports.getOne = async (id) => Coach.findById(id)
+exports.getOne = async (id) => Coach.findById(id).populate({
+                                  path: 'user_id',
+                                  select: 'name email social photoUrl'
+                                })
 
 // Get Coach by user_id
-exports.getByUserId = async (user_id) => Coach.findOne({ user_id: user_id })
+exports.getByUserId = async (userId) => Coach.findOne({ userId: userId })
 
 // Create Coach User
 exports.create = async (newCoach) => {

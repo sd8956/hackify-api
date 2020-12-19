@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const CoachSchema = new Schema(
   {
-    user_id: {
+    userId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'User'
