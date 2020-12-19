@@ -44,6 +44,17 @@ exports.getByUserId = async(req, res) => {
   }
 }
 
+exports.getPlacedAplications = async(req, res) => {
+  try {
+    const aplications = await aplicationService.getPlacedAplications()
+
+    return okResponse(res, 200, { aplications }) 
+  } catch (err) {
+    console.log('exports.getPlacedAplications -> err', err)
+    return errorResponse(res, errors.INTERNAL_ERROR, err)       
+  }
+}
+
 exports.create = async(req, res) => {
   try {
     const aplicationData = req.body
