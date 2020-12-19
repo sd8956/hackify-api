@@ -2,7 +2,7 @@ const express = require('express')
 const cohortController = require('../controller/Cohort')
 const { authenticate, coach } = require('../middleware/auth')
 
-function studentsApi(app) {
+function cohortsApi(app) {
   const userRoutes = express.Router()
   app.use('/cohort', userRoutes)
 
@@ -16,4 +16,4 @@ function studentsApi(app) {
   userRoutes.post('/', authenticate, coach, cohortController.create)
 }
 
-module.exports = studentsApi;
+module.exports = cohortsApi;
