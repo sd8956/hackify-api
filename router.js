@@ -5,6 +5,7 @@ const coachRoutes = require('./routes/Coach')
 const imageRoutes = require('./routes/Image')
 const cohortRoutes = require('./routes/Cohort')
 const studentRoutes = require('./routes/Student')
+const aplicationsRoutes = require('./routes/Aplication')
 
 module.exports = (app) => {
   const apiRoutes = express.Router();
@@ -32,6 +33,9 @@ module.exports = (app) => {
   // Image Routes
   imageRoutes(app);
 
-  // ohort Routes
+  // Cohort Routes
   cohortRoutes(app)
+
+  // Aplication Routes
+  aplicationsRoutes(app)
 }
