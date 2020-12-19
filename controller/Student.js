@@ -19,6 +19,20 @@ exports.getOne = async(req, res) => {
   }
 }
 
+exports.getFilteredStudents = async(req, res) => {
+  try {
+    
+    const { coachId, cohort } = req.query
+
+    const students = await studentService.getFilterStudents(coachId, cohort)
+
+    return okResponse(res, 200, { students })
+  } catch (err) {
+    console.log('exports.getFilteredStudents -> err', err)
+    return errorResponse(res, errors.INTERNAL_ERROR, err)
+  }
+}
+
 exports.create = async(req, res) => {
   const studentData = req.body
 

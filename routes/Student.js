@@ -1,10 +1,13 @@
 const express = require('express')
 const studentController = require('../controller/Student')
-const { authenticate } = require('../middleware/auth')
+const { authenticate, coach } = require('../middleware/auth')
 
 function studentsApi(app) {
   const userRoutes = express.Router()
   app.use('/students', userRoutes)
+
+  // Get filtered users
+  userRoutes.get('/', authenticate, coach, studentController.getFilteredStudents)
 
   // Get one student
   userRoutes.get('/:id', authenticate, studentController.getOne)
